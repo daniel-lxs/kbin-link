@@ -1,11 +1,11 @@
 let instanceUrl = "";
 
 const lemmyCommunityRegex = new RegExp(
-  `![a-zA-Z]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
+  `![a-zA-Z\\_\\-]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
   "gm"
 );
 const looselemmyCommunityRegex = new RegExp(
-  `[a-zA-Z]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
+  `[a-zA-Z\\_\\-]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
   "gm"
 );
 const lemmyCommunityUrlRegex = new RegExp(
