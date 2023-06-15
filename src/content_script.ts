@@ -110,12 +110,8 @@ function convertToKbinUrl(input: string, type: "mention" | "url") {
   let resultUrl = "";
   switch (type) {
     case "mention":
-      const hasInstanceUrl = input.includes(instanceUrl);
       const replacement = input.replace(`@${instanceUrl}`, "").replace("!", "");
-
-      resultUrl = `${baseUrl}${serviceType}/${
-        hasInstanceUrl ? replacement : input
-      }`;      
+      resultUrl = `${baseUrl}${serviceType}/${replacement}`;
       break;
     case "url":
       resultUrl = input.replace(
