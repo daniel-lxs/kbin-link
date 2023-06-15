@@ -22,13 +22,13 @@ This extension is forked from https://github.com/masrly/mastodon-link, I just ma
 
 ## Setup
 
-Click on the mastodon link chrome extensions options:
+Click on the kbin link extensions options:
 
-<img width="317" alt="mastodon-link-options" src="https://user-images.githubusercontent.com/1066212/203490862-0e62fe47-1f74-41b3-99a8-4de640847d8c.png">
+![Image](https://github.com/driccio98/kbin-link/blob/main/.github/images/iamge2.png)
 
-Enter your instances hostname and click save:
+Enter your instances hostname, select the type Lemmy or Kbin and click save:
 
-<img width="359" alt="mastodon-link-options-setup" src="https://user-images.githubusercontent.com/1066212/203490871-566cd1fc-a4b4-4ef6-a7c8-1f1c4769c04d.png">
+![Image](https://github.com/driccio98/kbin-link/blob/main/.github/images/image3.png)
 
 Find a Lemmy community and enjoy the convenient icon link! 
 
