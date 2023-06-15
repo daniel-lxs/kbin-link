@@ -1,4 +1,5 @@
 let instanceUrl = "";
+let serviceType = "";
 
 const lemmyCommunityRegex = new RegExp(
   `![a-zA-Z\\_\\-]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
@@ -112,12 +113,12 @@ function convertToKbinUrl(input: string, type: "mention" | "url") {
       const replacement = input.includes(instanceUrl)
         ? input.replace(`@${instanceUrl}`, "")
         : input.replace("!", "");
-      resultUrl = `${baseUrl}m/${replacement}`;
+      resultUrl = `${baseUrl}${serviceType}/${replacement}`;
       break;
     case "url":
       resultUrl = input.replace(
         /https?:\/\/([^/]+)\/c\/(.+)/,
-        `https://${instanceUrl}/m/$2@$1`
+        `https://${instanceUrl}/${serviceType}/$2@$1`
       );
       break;
   }
@@ -132,9 +133,11 @@ function restore_options(): void {
   chrome.storage.sync.get(
     {
       instance: "kbin.social",
+      serviceType: "m"
     },
     function (items) {
       instanceUrl = items.instance;
+      serviceType = items.serviceType;
       walk(document.body);
       observer.observe(document.body, observerConfig);
     }

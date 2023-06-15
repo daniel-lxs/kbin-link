@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Lixus - Kbin Linker options</title>
 </head>
@@ -20,16 +21,26 @@
         margin: 1em;
     }
 </style>
+
 <body>
-<label for="instance">Kbin instance:</label>
-<input type="text" id="instance" name="instance" placeholder="kbin.social" required
-    pattern="^[a-zA-Z0-9\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}(\.[a-zA-Z0-9\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}){1,}$">
+    <label for="service_type">Type:</label>
+    <select id="service_type" name="service_type">
+        <option value="c">Lemmy</option>
+        <option value="m" selected>Kbin</option>
+    </select>
 
-<div class="spacer"></div>
+    <div class="spacer"></div>
 
-<button id="save">Save</button>
-<div class="spacer"></div>
-<div id="status"></div>
-<script src="options.js"></script>
+    <label for="instance">Instance:</label>
+    <input type="text" id="instance" name="instance" placeholder="kbin.social" required
+        pattern="^[a-zA-Z0-9\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}(\.[a-zA-Z0-9\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}){1,}$">
+
+    <div class="spacer"></div>
+
+    <button id="save">Save</button>
+    <div class="spacer"></div>
+    <div id="status"></div>
+    <script src="options.js"></script>
 </body>
+
 </html>

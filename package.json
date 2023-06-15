@@ -1,6 +1,6 @@
 {
   "name": "kbin-link",
-  "version": "1.3.4",
+  "version": "1.3.6",
   "description": "Find it annoying to copy paste `!apple@lemmy.ml` to look at that community? This extension is for you.",
   "main": "index.js",
   "scripts": {
