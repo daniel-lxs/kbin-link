@@ -4,26 +4,35 @@ const lemmyCommunityRegex = new RegExp(
   `![a-zA-Z\\_\\-]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
   "gm"
 );
-const looselemmyCommunityRegex = new RegExp(
-  `[a-zA-Z\\_\\-]{1,30}@([a-zA-Z0-9\\-ßàÁâãóôþüúðæåïçèõöÿýòäœêëìíøùîûñé]{1,63}\\.){1,127}[a-zA-Z]{2,63}`,
-  "gm"
-);
 const lemmyCommunityUrlRegex = new RegExp(
   `https?:\\/\\/(?:[a-zA-Z0-9\\-]{1,63}\\.){1,127}[a-zA-Z]{2,63}\\/c\\/[a-zA-Z]{1,30}`,
   "gm"
 );
 
-//
-const observer = new MutationObserver((mutationList, observer) => {
-  for (let mutation of mutationList) {
-    if (mutation.target.parentElement !== null) {
-      walk(mutation.target.parentElement);
+const queue: MutationRecord[][] = [];
+const observer = new MutationObserver((mutations) => {
+  if (!queue.length) {
+    requestAnimationFrame(executeProcess);
+  }
+  queue.push(mutations);
+});
+
+function executeProcess() {
+  while (queue.length > 0) {
+    const mutationList = queue.shift();
+    if (mutationList) {
+      for (let mutation of mutationList) {
+        if (mutation.target.parentElement) {
+          walk(mutation.target.parentElement);
+        }
+      }
     }
   }
-});
+}
+
 const observerConfig = { attributes: false, childList: true, subtree: true };
 
-function walk(node: Node) {
+function walk(node: HTMLElement | ChildNode) {
   // I stole this function from here:
   // https://github.com/panicsteve/cloud-to-butt/blob/master/Source/content_script.js
 
@@ -48,7 +57,6 @@ function walk(node: Node) {
         child = next;
       }
       break;
-
     case Node.TEXT_NODE: // Text node
       handleText(node);
       break;
@@ -56,11 +64,7 @@ function walk(node: Node) {
 }
 
 function handleText(textNode: Node) {
-  if (
-    isTextNodeWithCommunity(textNode, lemmyCommunityRegex) ||
-    (isTextNodeWithCommunity(textNode, looselemmyCommunityRegex) &&
-      isParentTextNodeWithCommunity(textNode, lemmyCommunityRegex))
-  ) {
+  if (isTextNodeWithCommunity(textNode, lemmyCommunityRegex)) {
     processTextNode(textNode, lemmyCommunityRegex, "mention");
   } else if (isTextNodeWithCommunity(textNode, lemmyCommunityUrlRegex)) {
     processTextNode(textNode, lemmyCommunityUrlRegex, "url");
@@ -131,11 +135,8 @@ function restore_options(): void {
     },
     function (items) {
       instanceUrl = items.instance;
-      // Don't run on own server
-      if (!location.href.startsWith(`${location.protocol}//${instanceUrl}`)) {
-        walk(document.body);
-        observer.observe(document.body, observerConfig);
-      }
+      walk(document.body);
+      observer.observe(document.body, observerConfig);
     }
   );
 }
