@@ -1,6 +1,6 @@
 {
   "name": "Kbin Link",
-  "version": "1.3.2",
+  "version": "1.3.5",
   "author": "Daniel Riccio <@lixus98@kbin.social>",
   "manifest_version": 3,
   "description": "Extension to make it easy to visit Lemmy communities from kbin.social",
