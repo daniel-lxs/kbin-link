@@ -1,12 +1,13 @@
 {
   "name": "Kbin Link",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "author": "Daniel Riccio <@lixus98@kbin.social>",
   "manifest_version": 3,
   "description": "Extension to make it easy to visit Lemmy communities from kbin.social",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
+      "css": ["main.css"],
       "js": ["content_script.js"]
     }
   ],
