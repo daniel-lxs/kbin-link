@@ -15,7 +15,7 @@ This extension is forked from https://github.com/masrly/mastodon-link, I just ma
 ## Installation
 
 ### Chrome
-- Pending :(
+- https://chrome.google.com/webstore/detail/kbin-link/jjkdhggoccldmigjpgilnfgiihclflio
 
 ### Firefox
 - https://addons.mozilla.org/en-US/firefox/addon/kbin-link/
